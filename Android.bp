@@ -12,18 +12,21 @@ license {
 cc_library_headers {
     name: "libopen_dice_headers",
     host_supported: true,
+    vendor_available: true,
     export_include_dirs: ["include"],
 }
 
 cc_library_headers {
     name: "libopen_dice_boringssl_ed25519_headers",
     host_supported: true,
+    vendor_available: true,
     export_include_dirs: ["include/dice/config/boringssl_ed25519"],
 }
 
 cc_library_static {
     name: "libopen_dice_cbor",
     host_supported: true,
+    vendor_available: true,
     srcs: [
         "src/boringssl_hash_kdf_sign_ops.c",
         "src/cbor_cert_op.c",
@@ -46,6 +49,7 @@ cc_library_static {
 cc_library_static {
     name: "libopen_dice_bcc",
     host_supported: true,
+    vendor_available: true,
     srcs: [
         "src/cbor_reader.c",
         "src/android/bcc.c",
@@ -173,6 +177,7 @@ rust_bindgen {
 
     // This is mainly to run layout tests for generated bindings on the host.
     host_supported: true,
+    vendor_available: true,
 }
 
 rust_bindgen {
@@ -200,4 +205,5 @@ rust_bindgen {
 
     // This is mainly to run layout tests for generated bindings on the host.
     host_supported: true,
+    vendor_available: true,
 }
