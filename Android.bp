@@ -207,3 +207,27 @@ rust_bindgen {
     host_supported: true,
     vendor_available: true,
 }
+
+rust_test {
+    name: "libopen_dice_cbor_bindgen_test",
+    srcs: [
+        ":libopen_dice_cbor_bindgen",
+    ],
+    crate_name: "open_dice_cbor_bindgen_test",
+    test_suites: ["general-tests"],
+    auto_gen_config: true,
+    clippy_lints: "none",
+    lints: "none",
+}
+
+rust_test {
+    name: "libopen_dice_bcc_bindgen_test",
+    srcs: [
+        ":libopen_dice_bcc_bindgen",
+    ],
+    crate_name: "open_dice_bcc_bindgen_test",
+    test_suites: ["general-tests"],
+    auto_gen_config: true,
+    clippy_lints: "none",
+    lints: "none",
+}
