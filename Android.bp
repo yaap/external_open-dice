@@ -302,10 +302,7 @@ rust_defaults {
     wrapper_src: "rust/dice.h",
     crate_name: "open_dice_cbor_bindgen",
     source_stem: "bindings",
-    header_libs: [
-        "libopen_dice_boringssl_ed25519_headers",
-        "libopen_dice_headers",
-    ],
+    whole_static_libs: ["libopen_dice_cbor"],
 
     // Generate bindings only for the symbols that are actually exported (see exported.map.txt).
     // This makes the generated bindings much more concise and improves compilation
@@ -363,9 +360,7 @@ rust_defaults {
     wrapper_src: "rust/android/bcc.h",
     crate_name: "open_dice_bcc_bindgen",
     source_stem: "bindings",
-    header_libs: [
-        "libopen_dice_headers",
-    ],
+    whole_static_libs: ["libopen_dice_bcc"],
 
     // Generate bindings only for the symbols that are actually exported (see exported.map.txt).
     // This makes the generated bindings much more concise and improves compilation
