@@ -99,6 +99,7 @@ cc_library_static {
 cc_library_static {
     name: "libopen_dice_cbor_baremetal",
     defaults: ["libopen_dice_cbor.cc_defaults"],
+    host_supported: false,
     allow_undefined_symbols: true,
     static_libs: ["libcrypto_baremetal"],
 }
@@ -126,6 +127,7 @@ cc_library_static {
     name: "libopen_dice_bcc_baremetal",
     defaults: ["libopen_dice_bcc.cc_defaults"],
     export_static_lib_headers: ["libopen_dice_cbor_baremetal"],
+    host_supported: false,
     static_libs: [
         "libcrypto_baremetal",
         "libopen_dice_cbor_baremetal",
