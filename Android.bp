@@ -74,9 +74,14 @@ filegroup {
     ],
 }
 
-cc_defaults {
-    name: "libopen_dice_cbor.cc_defaults",
+cc_library {
+    name: "libopen_dice_cbor",
     defaults: ["libopen_dice.cc_defaults"],
+    srcs: [
+        ":libopen_dice_cbor_common_srcs",
+        ":libopen_dice_cbor_ed25519_srcs",
+        ":libopen_dice_common_srcs",
+    ],
     header_libs: [
         "libopen_dice_boringssl_ed25519_headers",
         "libopen_dice_headers",
@@ -84,16 +89,6 @@ cc_defaults {
     export_header_lib_headers: [
         "libopen_dice_boringssl_ed25519_headers",
         "libopen_dice_headers",
-    ],
-}
-
-cc_library {
-    name: "libopen_dice_cbor",
-    defaults: ["libopen_dice_cbor.cc_defaults"],
-    srcs: [
-        ":libopen_dice_cbor_common_srcs",
-        ":libopen_dice_cbor_ed25519_srcs",
-        ":libopen_dice_common_srcs",
     ],
     shared_libs: ["libcrypto"],
 }
@@ -120,8 +115,6 @@ cc_library_static {
 // Version of the library missing DiceClearMemory, for baremetal client code.
 cc_library_static {
     name: "libopen_dice_cbor_baremetal",
-    defaults: ["libopen_dice_cbor.cc_defaults"],
-    host_supported: false,
     srcs: [
         ":libopen_dice_cbor_common_srcs",
         ":libopen_dice_cbor_ed25519_srcs",
@@ -129,6 +122,14 @@ cc_library_static {
     ],
     exclude_srcs: ["src/clear_memory.c"],
     allow_undefined_symbols: true,
+    header_libs: [
+        "libopen_dice_boringssl_ed25519_headers",
+        "libopen_dice_headers",
+    ],
+    export_header_lib_headers: [
+        "libopen_dice_boringssl_ed25519_headers",
+        "libopen_dice_headers",
+    ],
     static_libs: ["libcrypto_baremetal"],
 }
 
@@ -153,10 +154,8 @@ cc_library {
 
 cc_library_static {
     name: "libopen_dice_bcc_baremetal",
-    defaults: ["libopen_dice.cc_defaults"],
     srcs: [":libopen_dice_bcc_srcs"],
     export_static_lib_headers: ["libopen_dice_cbor_baremetal"],
-    host_supported: false,
     static_libs: [
         "libcrypto_baremetal",
         "libopen_dice_cbor_baremetal",
