@@ -19,6 +19,9 @@ cc_defaults {
         "com.android.compos",
         "com.android.virt",
     ],
+    lto: {
+        never: true,
+    },
 }
 
 cc_library_headers {
@@ -59,6 +62,9 @@ cc_defaults {
         "libopen_dice_boringssl_ed25519_headers",
         "libopen_dice_headers",
     ],
+    lto: {
+        never: true,
+    },
 }
 
 cc_library {
